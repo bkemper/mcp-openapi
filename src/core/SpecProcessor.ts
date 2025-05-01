@@ -22,6 +22,9 @@ export class DefaultSpecProcessor implements ISpecProcessor {
     // First dereference all $refs
     const dereferencedSpec = (await $RefParser.dereference(spec, {
       continueOnError: true,
+      dereference: {
+        circular: "ignore",
+      },
     })) as OpenAPIV3.Document;
 
     // Then merge all allOf schemas
